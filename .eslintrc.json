@@ -1,3 +1,11 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["eslint:recommended", "next/core-web-vitals"],
+  "rules": {
+    "semi":"error",
+    "brace-style": ["error", "1tbs"],
+    "quotes": ["error", "single"],
+    "no-multiple-empty-lines": ["error", {"max": 1}],
+    "eol-last": ["error"],
+    "no-unused-vars": "off"
+  }
 }
