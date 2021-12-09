@@ -12,7 +12,7 @@ export const Home: React.FC<IHomeProps> = ({pokemons}) => {
   const pokemonList = pokemons ? pokemons.map(p => (
     <div key={p.name}>
       <div>
-        <Image src={p.sprites.front_default} alt={p.name} width={128} height={128}></Image>
+        {p.sprites.front_default && <Image src={p.sprites.front_default} alt={p.name} width={128} height={128}></Image>}
       </div>
       <div >{p.name}</div>
     </div>

@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-
+import _Pokedex, {Pokemon as PokedexPokemon} from 'pokedex-promise-v2';
 const API_URL = 'https://pokeapi.co/api/v2/pokemon';
 
 type GetAllDTO = {
@@ -12,41 +11,30 @@ type GetAllDTO = {
   }[]
 };
 
-type PokemonDTO = {
+export type Pokemon = {
   name: string;
   base_experience: number;
   height: number;
   weight: number;
-  abilities: {
-    ability: {
-      name: string;
-      url: string;
-    },
-  }[],
   sprites: {
-    front_default: string;
+    front_default: string | null;
   }
 }
 
-export type Pokemon = PokemonDTO;
+const Pokedex = new _Pokedex();
 
 export const PokemonsAPI = {
   async getAll(offset: number = 0): Promise<Pokemon[]> {
-    const response = await fetch(API_URL);
-    const body = await response.json() as GetAllDTO;
-
-    const result: Pokemon[] = [];
-    for (const p of body.results) {
-      result.push({
-        ...await PokemonsAPI.getOne(p.name),
+    const pokemonList = await Pokedex.getPokemonsList({offset, limit: 10});
+    const pokemons: Pokemon[] = [];
+    for (const p of pokemonList.results) {
+      const {name, base_experience, height, weight, abilities, sprites: {front_default} } =
+        await Pokedex.getPokemonByName(p.name) as PokedexPokemon;
+      // grab only the data we need
+      pokemons.push({
+        name, base_experience, height, weight, sprites: {front_default}
       });
     }
-    return result;
+    return pokemons;
   },
-
-  async getOne(name: string) {
-    const response = await fetch(`${API_URL}/${name}`);
-    const body = await response.json() as PokemonDTO;
-    return body;
-  }
 };
