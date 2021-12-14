@@ -1,5 +1,5 @@
 import { GetServerSideProps, NextPage } from 'next';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { PokemonList } from '../components/PokemonList';
 import { usePokemons } from '../hooks/usePokemons';
 import { Pokemon, PokemonsAPI } from '../services/PokemonsAPI';
