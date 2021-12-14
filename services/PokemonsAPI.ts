@@ -1,15 +1,4 @@
 import _Pokedex, {Pokemon as PokedexPokemon} from 'pokedex-promise-v2';
-const API_URL = 'https://pokeapi.co/api/v2/pokemon';
-
-type GetAllDTO = {
-  count: number,
-  next: string | null,
-  previous: string | null,
-  results: {
-    name: string,
-    url: string
-  }[]
-};
 
 export type Pokemon = {
   name: string;

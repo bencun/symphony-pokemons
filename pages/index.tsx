@@ -1,32 +1,19 @@
-import { GetServerSideProps } from 'next';
-import Image from 'next/image';
-import React from 'react';
+import { GetServerSideProps, NextPage } from 'next';
+import React, { useEffect, useState } from 'react';
+import { PokemonList } from '../components/PokemonList';
+import { usePokemons } from '../hooks/usePokemons';
 import { Pokemon, PokemonsAPI } from '../services/PokemonsAPI';
 
 interface IHomeProps {
   pokemons: Pokemon[];
 }
 
-export const Home: React.FC<IHomeProps> = ({pokemons}) => {
-
-  const pokemonList = pokemons ? pokemons.map(p => (
-    <div key={p.name}>
-      <div>
-        {p.sprites.front_default && <Image src={p.sprites.front_default} alt={p.name} width={128} height={128}></Image>}
-      </div>
-      <div >{p.name}</div>
-    </div>
-  )) : null;
-
-  return (
-    <div>
-      Pokemons list:
-      {pokemonList}
-    </div>
-  );
+export const HomeCSR: NextPage<IHomeProps> = () => {
+  const pokemons = usePokemons();
+  return pokemons ? <PokemonList pokemons={pokemons}/> : <div>Loading...</div>;
 };
 
-export default Home;
+export const HomeSSR: NextPage<IHomeProps> = ({pokemons}) => <PokemonList pokemons={pokemons}/>;
 
 export const getServerSideProps: GetServerSideProps<IHomeProps> = async (context) => {
   const pokemons = await PokemonsAPI.getAll();
@@ -36,3 +23,5 @@ export const getServerSideProps: GetServerSideProps<IHomeProps> = async (context
     }
   };
 };
+
+export default HomeSSR;
