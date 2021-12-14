@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { Pokemon } from '../services/PokemonsAPI';
+import styles from './PokemonList.module.scss';
 
 interface IPokemonListProps {
   pokemons: Pokemon[];
@@ -10,7 +11,7 @@ interface IPokemonListProps {
 export const PokemonList: React.FC<IPokemonListProps> = ({pokemons}) => {
 
   return (
-    <div>
+    <div className={styles.root}>
       Pokemons list:
       {
         pokemons ? pokemons.map(p => (
