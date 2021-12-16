@@ -1,7 +1,9 @@
 
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { Pokemon } from '../services/PokemonsAPI';
+import { PokemonCard } from './PokemonCard';
 import styles from './PokemonList.module.scss';
 
 interface IPokemonListProps {
@@ -12,17 +14,12 @@ export const PokemonList: React.FC<IPokemonListProps> = ({pokemons}) => {
 
   return (
     <div className={styles.root}>
-      Pokemons list:
-      {
-        pokemons ? pokemons.map(p => (
-          <div key={p.name}>
-            <div>
-              {p.sprites.front_default && <Image src={p.sprites.front_default} alt={p.name} width={128} height={128}></Image>}
-            </div>
-            <div >{p.name.toUpperCase()}</div>
-          </div>
-        )) : null
-      }
+      <h1>Pokemons list:</h1>
+      {pokemons ? pokemons.map(p => (
+          <Link key={p.name} href={`/pokemon/${p.name}`}>
+            <a><PokemonCard pokemon={p}/></a>
+          </Link>
+        )) : null}
     </div>
   );
 };

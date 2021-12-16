@@ -26,4 +26,8 @@ export const PokemonsAPI = {
     }
     return pokemons;
   },
+  async getOne(pokemonName: string): Promise<Pokemon> {
+    const {name, base_experience, height, weight, sprites: {front_default}} = await Pokedex.getPokemonByName(pokemonName) as PokedexPokemon;
+    return {name, base_experience, height, weight, sprites: {front_default}};
+  }
 };

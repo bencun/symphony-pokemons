@@ -15,7 +15,7 @@ export const HomeCSR: NextPage<IHomeProps> = () => {
 
 export const HomeSSR: NextPage<IHomeProps> = ({pokemons}) => <PokemonList pokemons={pokemons}/>;
 
-export const getServerSideProps: GetServerSideProps<IHomeProps> = async (context) => {
+export const getServerSideProps: GetServerSideProps<IHomeProps> = async () => {
   const pokemons = await PokemonsAPI.getAll();
   return {
     props: {
