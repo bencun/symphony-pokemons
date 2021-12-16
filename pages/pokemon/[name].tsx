@@ -11,17 +11,21 @@ interface IPokemonProps {
 
 const PokemonPage: NextPage<IPokemonProps> = (props) => {
   return (
-    <>
+    <div className="flex-centered" style={{width: '480px', height: '100vh'}}>
       <CustomTitle title={`Pokemon: ${props.pokemon.name}`}/>
-      <PokemonCard pokemon={props.pokemon}/>
-    </>
+      <PokemonCard pokemon={props.pokemon} showDetails/>
+    </div>
     );
 };
 
 export const getServerSideProps: GetServerSideProps<IPokemonProps> = async (context) => {
   const name = context.params?.name as string;
-  const pokemon = await PokemonsAPI.getOne(name);
-  return {props: {pokemon}};
+  try {
+    const pokemon = await PokemonsAPI.getOne(name);
+    return {props: {pokemon}};
+  } catch(e) {
+    return {notFound: true};
+  }
 };
 
 export default PokemonPage;

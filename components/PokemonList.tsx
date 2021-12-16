@@ -14,10 +14,11 @@ export const PokemonList: React.FC<IPokemonListProps> = ({pokemons}) => {
 
   return (
     <div className={styles.root}>
-      <h1>Pokemons list:</h1>
       {pokemons ? pokemons.map(p => (
           <Link key={p.name} href={`/pokemon/${p.name}`}>
-            <a><PokemonCard pokemon={p}/></a>
+            <a className="full-width-inline">
+              <PokemonCard pokemon={p}/>
+            </a>
           </Link>
         )) : null}
     </div>
