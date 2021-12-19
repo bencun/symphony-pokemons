@@ -8,7 +8,7 @@ const AboutPage: NextPage = () => {
     <div className="padded-container" style={{ margin: 'auto' }}>
       <h1>Welcome to the world of Pokemons!</h1>
       <p>
-        This application is using the <a href="https://pokeapi.co">PokeAPI</a>{' '}
+        This application is using the <a href="https://pokeapi.co">PokeAPI</a>
         to fetch the data on your favorite Pokemons!
       </p>
       <p>Furthermore, this page is completely statically rendered.</p>

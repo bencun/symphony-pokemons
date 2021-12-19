@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import React from 'react';
 import { PokemonList } from '../components/PokemonList';
 import { usePokemons } from '../hooks/usePokemons';
@@ -17,13 +17,17 @@ export const HomeSSR: NextPage<IHomeProps> = ({ pokemons }) => (
   <PokemonList pokemons={pokemons} />
 );
 
-export const getServerSideProps: GetServerSideProps<IHomeProps> = async () => {
+/* export const getServerSideProps: GetServerSideProps<IHomeProps> = async () => {
   const pokemons = await PokemonsAPI.getAll();
   return {
     props: {
       pokemons,
     },
   };
+}; */
+
+export const getStaticProps: GetStaticProps<IHomeProps> = async () => {
+  return { props: { pokemons: await PokemonsAPI.getAll() } };
 };
 
 export default HomeSSR;
