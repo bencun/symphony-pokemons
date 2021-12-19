@@ -1,6 +1,5 @@
-
-import { useState, useEffect } from 'react';
-import { PokemonsAPI, Pokemon } from '../services/PokemonsAPI';
+import { useEffect, useState } from 'react';
+import { Pokemon, PokemonsAPI } from '../services/PokemonsAPI';
 
 export const usePokemons = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>();
