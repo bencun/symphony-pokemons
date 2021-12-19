@@ -1,16 +1,23 @@
-import { Html, Head, Main, NextScript  } from 'next/document';
+import Document, { Html, Head, Main, NextScript  } from 'next/document';
 import React from 'react';
 
-const CustomDocument: React.FC = () => (
-  <Html>
-    <Head>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />  
-    </Head>
-    <body>
-      <Main />
-      <NextScript />
-    </body>
-  </Html>
-);
+class CustomDocument extends Document {
+  render() {
+    return (
+      <Html>
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
 
 export default CustomDocument;
