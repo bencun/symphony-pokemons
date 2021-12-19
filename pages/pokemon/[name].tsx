@@ -1,8 +1,15 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage,
+} from 'next';
 import React from 'react';
 import { CustomTitle } from '../../components/CustomTitle';
 import { PokemonCard } from '../../components/PokemonCard';
-import { Pokemon, PokemonsAPI } from '../../services/PokemonsAPI';
+import {
+  Pokemon,
+  PokemonsAPI,
+} from '../../services/PokemonsAPI';
 
 interface IPokemonProps {
   pokemon: Pokemon;
@@ -11,7 +18,9 @@ interface IPokemonProps {
 const PokemonPage: NextPage<IPokemonProps> = (props) => {
   return (
     <div className="flex-centered padded-container full-height">
-      <CustomTitle title={`Pokemon: ${props.pokemon.name}`} />
+      <CustomTitle
+        title={`Pokemon: ${props.pokemon.name}`}
+      />
       <PokemonCard pokemon={props.pokemon} showDetails />
     </div>
   );
@@ -30,19 +39,23 @@ const PokemonPage: NextPage<IPokemonProps> = (props) => {
 }; */
 export const getStaticPaths: GetStaticPaths = async () => {
   const pokemons = await PokemonsAPI.getAll();
-  const paths = pokemons.map((p) => ({ params: { name: p.name } }));
+  const paths = pokemons.map((p) => ({
+    params: { name: p.name },
+  }));
   return {
     paths,
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps<IPokemonProps> = async ({
-  params,
-}) => {
+export const getStaticProps: GetStaticProps<
+  IPokemonProps
+> = async ({ params }) => {
   if (params && params.name) {
     try {
-      const pokemon = await PokemonsAPI.getOne(params.name as string);
+      const pokemon = await PokemonsAPI.getOne(
+        params.name as string
+      );
       return { props: { pokemon } };
     } catch (e) {
       // 404 if pokemon not found by name

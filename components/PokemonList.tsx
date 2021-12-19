@@ -8,7 +8,9 @@ interface IPokemonListProps {
   pokemons: Pokemon[];
 }
 
-export const PokemonList: React.FC<IPokemonListProps> = ({ pokemons }) => {
+export const PokemonList: React.FC<IPokemonListProps> = ({
+  pokemons,
+}) => {
   return (
     <div className={`${styles.root} padded-container`}>
       {pokemons

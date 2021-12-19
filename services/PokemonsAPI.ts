@@ -1,4 +1,6 @@
-import _Pokedex, { Pokemon as PokedexPokemon } from 'pokedex-promise-v2';
+import _Pokedex, {
+  Pokemon as PokedexPokemon,
+} from 'pokedex-promise-v2';
 
 export type Pokemon = {
   name: string;
@@ -14,7 +16,10 @@ const Pokedex = new _Pokedex();
 
 export const PokemonsAPI = {
   async getAll(offset: number = 0): Promise<Pokemon[]> {
-    const pokemonList = await Pokedex.getPokemonsList({ offset, limit: 10 });
+    const pokemonList = await Pokedex.getPokemonsList({
+      offset,
+      limit: 10,
+    });
     const pokemons: Pokemon[] = [];
     for (const p of pokemonList.results) {
       const {
@@ -24,7 +29,9 @@ export const PokemonsAPI = {
         weight,
         abilities,
         sprites: { front_default },
-      } = (await Pokedex.getPokemonByName(p.name)) as PokedexPokemon;
+      } = (await Pokedex.getPokemonByName(
+        p.name
+      )) as PokedexPokemon;
       // grab only the data we need
       pokemons.push({
         name,
@@ -43,7 +50,9 @@ export const PokemonsAPI = {
       height,
       weight,
       sprites: { front_default },
-    } = (await Pokedex.getPokemonByName(pokemonName)) as PokedexPokemon;
+    } = (await Pokedex.getPokemonByName(
+      pokemonName
+    )) as PokedexPokemon;
     return {
       name,
       base_experience,

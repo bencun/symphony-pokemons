@@ -32,14 +32,18 @@ export const PokemonCard: React.FC<IPokemonCardProps> = ({
       </div>
 
       <div
-        className={`${styles.details} ${showDetails ? styles.showDetails : ''}`}
+        className={`${styles.details} ${
+          showDetails ? styles.showDetails : ''
+        }`}
       >
         <h2>{pokemon.name}</h2>
 
         {showDetails
           ? Object.keys(propsToList).map((pokeProp) => (
               <div key={pokeProp}>
-                <h3>{propsToList[pokeProp as keyof Pokemon]}</h3>
+                <h3>
+                  {propsToList[pokeProp as keyof Pokemon]}
+                </h3>
                 <p>{pokemon[pokeProp as keyof Pokemon]}</p>
               </div>
             ))

@@ -10,7 +10,10 @@ export const RootLayout: React.FC = ({ children }) => {
   return (
     <>
       <Head>
-        <meta name="description" content="My Pokemons Page!"></meta>
+        <meta
+          name="description"
+          content="My Pokemons Page!"
+        ></meta>
         <title>Pokemons!</title>
       </Head>
 
@@ -20,7 +23,10 @@ export const RootLayout: React.FC = ({ children }) => {
             <a>Pokemons!</a>
           </Link>
         </h1>
-        <button className="btn-link" onClick={() => router.push('/about')}>
+        <button
+          className="btn-link"
+          onClick={() => router.push('/about')}
+        >
           About
         </button>
       </div>
