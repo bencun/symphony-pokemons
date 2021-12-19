@@ -45,3 +45,10 @@ h2 {
 .full-height {
   height: 100vh;
 }
+
+.btn-link {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
