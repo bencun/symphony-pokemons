@@ -11,7 +11,7 @@ interface IPokemonProps {
 
 const PokemonPage: NextPage<IPokemonProps> = (props) => {
   return (
-    <div className="flex-centered" style={{width: '480px', height: '100vh'}}>
+    <div className="flex-centered padded-container full-height">
       <CustomTitle title={`Pokemon: ${props.pokemon.name}`}/>
       <PokemonCard pokemon={props.pokemon} showDetails/>
     </div>

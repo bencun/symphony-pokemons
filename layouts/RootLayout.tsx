@@ -13,6 +13,7 @@ export const RootLayout: React.FC = ({children}) => {
 
     <div className={styles.root}>
       <h1><Link href="/"><a>Pokemons!</a></Link></h1>
+      <Link href="/about"><a>About</a></Link>
     </div>
     {children}
     </>

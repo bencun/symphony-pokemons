@@ -13,7 +13,7 @@ interface IPokemonListProps {
 export const PokemonList: React.FC<IPokemonListProps> = ({pokemons}) => {
 
   return (
-    <div className={styles.root}>
+    <div className={`${styles.root} padded-container`}>
       {pokemons ? pokemons.map(p => (
           <Link key={p.name} href={`/pokemon/${p.name}`}>
             <a className="full-width-inline">

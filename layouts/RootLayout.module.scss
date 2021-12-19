@@ -1,3 +1,9 @@
 .root {
-  text-align: center;
+  width: 100%;
+  background-color: lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  margin-bottom: 16px;
 }
