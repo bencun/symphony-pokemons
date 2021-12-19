@@ -1,4 +1,5 @@
 import {
+  GetServerSideProps,
   GetStaticPaths,
   GetStaticProps,
   NextPage,
@@ -26,9 +27,9 @@ const PokemonPage: NextPage<IPokemonProps> = (props) => {
   );
 };
 
-/* export const getServerSideProps: GetServerSideProps<IPokemonProps> = async (
-  context
-) => {
+/* export const getServerSideProps: GetServerSideProps<
+  IPokemonProps
+> = async (context) => {
   const name = context.params?.name as string;
   try {
     const pokemon = await PokemonsAPI.getOne(name);
@@ -36,7 +37,8 @@ const PokemonPage: NextPage<IPokemonProps> = (props) => {
   } catch (e) {
     return { notFound: true };
   }
-}; */
+};
+ */
 export const getStaticPaths: GetStaticPaths = async () => {
   const pokemons = await PokemonsAPI.getAll();
   const paths = pokemons.map((p) => ({
