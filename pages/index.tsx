@@ -10,17 +10,19 @@ interface IHomeProps {
 
 export const HomeCSR: NextPage<IHomeProps> = () => {
   const pokemons = usePokemons();
-  return pokemons ? <PokemonList pokemons={pokemons}/> : <div>Loading...</div>;
+  return pokemons ? <PokemonList pokemons={pokemons} /> : <div>Loading...</div>;
 };
 
-export const HomeSSR: NextPage<IHomeProps> = ({pokemons}) => <PokemonList pokemons={pokemons}/>;
+export const HomeSSR: NextPage<IHomeProps> = ({ pokemons }) => (
+  <PokemonList pokemons={pokemons} />
+);
 
 export const getServerSideProps: GetServerSideProps<IHomeProps> = async () => {
   const pokemons = await PokemonsAPI.getAll();
   return {
     props: {
       pokemons,
-    }
+    },
   };
 };
 
